@@ -1,0 +1,136 @@
+{
+  "name": "read-tree",
+  "version": "0.0.1",
+  "description": "A parse5 tree adapter that works with Readability",
+  "keywords": [
+    "parse5",
+    "readability",
+    "tree adapter"
+  ],
+  "author": "Erik Brinkman <erik.brinkman@gmail.com>",
+  "license": "MIT",
+  "module": "bundle/read-tree.esm.min.js",
+  "types": "dist/index.d.ts",
+  "main": "bundle/read-tree.cjs.min.js",
+  "unpkg": "bundle/read-tree.iife.min.js",
+  "files": [
+    "/bundle/*.js",
+    "/dist/**/*.js",
+    "/dist/**/*.d.ts"
+  ],
+  "scripts": {
+    "fmt": "prettier --write 'src/*.ts' '*.json' bundle.mjs",
+    "lint:eslint": "eslint --cache src/*.ts bundle.mjs",
+    "lint:doc": "typedoc --emit none",
+    "lint": "tsc && yarn lint:eslint && yarn lint:doc",
+    "build:ts": "tsc -p tsconfig.build.json",
+    "build:bundle": "rm -rf bundle && node bundle.mjs",
+    "build": "yarn build:ts && yarn build:bundle",
+    "test": "jest --coverage",
+    "prepack": "yarn lint && jest --clear-cache && yarn test && yarn build",
+    "doc": "typedoc"
+  },
+  "packageManager": "yarn@3.2.1",
+  "dependencies": {
+    "parse5": "^7.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.0",
+    "@babel/preset-env": "^7.18.0",
+    "@babel/preset-typescript": "^7.17.12",
+    "@mozilla/readability": "^0.4.2",
+    "@types/babel__core": "^7.1.19",
+    "@types/babel__preset-env": "^7.9.2",
+    "@types/eslint": "^8.4.2",
+    "@types/jest": "^27.5.1",
+    "@types/jsdom": "^16.2.14",
+    "@types/prettier": "^2.6.1",
+    "@typescript-eslint/eslint-plugin": "^5.25.0",
+    "@typescript-eslint/parser": "^5.25.0",
+    "@yarnpkg/esbuild-plugin-pnp": "^3.0.0-rc.6",
+    "babel-jest": "^28.1.0",
+    "chalk": "4.1.2",
+    "esbuild": "^0.14.39",
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jest": "^26.2.2",
+    "eslint-plugin-spellcheck": "^0.0.19",
+    "eslint-plugin-tsdoc": "^0.2.16",
+    "jest": "^28.1.0",
+    "jsdom": "^19.0.0",
+    "lorem-ipsum": "^2.0.4",
+    "prettier": "^2.6.2",
+    "prettier-plugin-organize-imports": "^2.3.4",
+    "typedoc": "^0.22.15",
+    "typescript": "^4.6.4"
+  },
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-organize-imports"
+    ]
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ],
+      "@babel/preset-typescript"
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint",
+      "jest",
+      "spellcheck",
+      "eslint-plugin-tsdoc"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:jest/recommended",
+      "prettier"
+    ],
+    "env": {
+      "node": true
+    },
+    "rules": {
+      "no-console": "error",
+      "tsdoc/syntax": "error",
+      "@typescript-eslint/no-non-null-assertion": "off",
+      "no-warning-comments": [
+        "error",
+        {
+          "terms": [
+            "fixme"
+          ],
+          "location": "anywhere"
+        }
+      ],
+      "spellcheck/spell-checker": [
+        "error",
+        {
+          "identifiers": false,
+          "skipWords": [
+            "cdata",
+            "doctype",
+            "enums",
+            "iife",
+            "mozilla",
+            "namespace",
+            "readtree",
+            "reprehenderit",
+            "srcset"
+          ],
+          "minLength": 4
+        }
+      ]
+    }
+  }
+}
