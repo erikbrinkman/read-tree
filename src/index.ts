@@ -123,7 +123,7 @@ export interface BaseChild extends HasParent {
  * This represents a combination of the minimum document required by parse5,
  * and the minimum document required by Readability.
  *
- * @remarks Because Readability requires {@link ownerDocument}, the easiest way
+ * @remarks Because Readability requires {@link Element#ownerDocument}, the easiest way
  * to implement this was to have new nodes created with their parent pointing
  * to document, but that technically violates the structure.
  */
